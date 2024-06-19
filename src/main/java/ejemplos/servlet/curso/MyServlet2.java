@@ -1,5 +1,6 @@
 package ejemplos.servlet.curso;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,17 +15,8 @@ public class MyServlet2 extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-	    String nombre = request.getParameter("nombre");
-		String mail = request.getParameter("mail");
-
-		// send HTML page to client
-		out.println("<html>");
-		out.println("<head><title>Servlet2</title></head>");
-		out.println("<body>");
-		out.print("<h1>Bienvenido " + nombre + " !!!</h1>");
-		out.print("<br><p> Te enviaremos toda la informacion a " + mail +"</p>");
+		RequestDispatcher respuesta = request.getRequestDispatcher("respuesta.jsp");
+		respuesta.forward(request, response);
 	}
 
 }
